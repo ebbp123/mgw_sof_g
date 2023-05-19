@@ -13,7 +13,8 @@ const launchId = urlParams.get('launch')
 async function getWellKnown() {
     let response = await fetch(fhirUrl + '/.well-known/smart-configuration', {
         headers: {
-            Accept: 'application/json'
+            Accept: 'application/json',
+            "Cerner-Deployment-Config": 'ehr-sandbox'
         }
     })
 

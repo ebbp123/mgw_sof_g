@@ -14,7 +14,8 @@ async function getPatient() {
     let response = await fetch(fhirUrl + '/Patient/' + token_data.patient, {
         headers: {
             'Accept': 'application/json',
-            'Authorization': `Bearer ${token_data.access_token}`
+            'Authorization': `Bearer ${token_data.access_token}`,
+            "Cerner-Deployment-Config": 'ehr-sandbox'
         }
     })
     return await response.json()
