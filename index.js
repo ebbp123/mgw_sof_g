@@ -72,7 +72,7 @@ const postPatientBody = `{
     "birthDate": "2023-05-22",
   }`
 
-async function patchPatient() {
+async function postPatient() {
     let response = await fetch(fhirUrl + '/Patient/' + token_data.patient, {
         method: 'POST',
         headers: {
@@ -92,25 +92,24 @@ getPatient().then((data) => {
     document.getElementById('mgw-data-url').textContent = fhirUrl + '/Patient/' + token_data.patient
     document.getElementById('mgw-data-content').textContent= JSON.stringify(data)
 }).catch((err) => {
-    debugger
     console.log('error fetching patient data')
 })
 
 
 patchPatient().then((response) => {
+    console.log('Patient PATCH')
     console.log(response.text())
     document.getElementById('patch-action').textContent = 'Patched Patient'
     document.getElementById('patch-data-status').textContent= 'Response: ' + response.status
 }).catch((err) => {
-    debugger
     console.log('error patching patient')
 })
 
-patchPatient().then((response) => {
+postPatient().then((response) => {
+    console.log('Patient POST')
     console.log(response.text())
     document.getElementById('post-action').textContent = 'Created Patient'
     document.getElementById('post-data-status').textContent= 'Response: ' + response.status
 }).catch((err) => {
-    debugger
     console.log('error creating patient')
 })
