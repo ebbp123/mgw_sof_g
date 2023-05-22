@@ -73,7 +73,7 @@ const postPatientBody = `{
   }`
 
 async function postPatient() {
-    let response = await fetch(fhirUrl + '/Patient/' + token_data.patient, {
+    let response = await fetch(fhirUrl + '/Patient', {
         method: 'POST',
         headers: {
             'Accept': 'application/fhir+json',
