@@ -46,6 +46,47 @@ async function patchPatient() {
     return await response
 }
 
+const postPatientBody = `{
+    "resourceType": "Patient",
+    "identifier": [
+      {
+        "assigner": {
+          "reference": "Organization/675844"
+        }
+      }
+    ],
+    "active": true,
+    "name": [
+      {
+        "use": "official",
+        "family": "CORS",
+        "given": [
+          "OCITEST"
+        ],
+        "period": {
+          "start": "2010-05-17T14:54:31.000Z"
+        }
+      }
+    ],
+    "gender": "male",
+    "birthDate": "2023-05-22",
+  }`
+
+async function patchPatient() {
+    let response = await fetch(fhirUrl + '/Patient/' + token_data.patient, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/fhir+json',
+            'Authorization': `Bearer ${token_data.access_token}`,
+            "Cerner-Deployment-Config": 'ehr-sandbox'
+        },
+        body: postPatientBody
+    })
+
+    return await response
+}
+
+
 getPatient().then((data) => {
     console.log(data)
     document.getElementById('mgw-data-url').textContent = fhirUrl + '/Patient/' + token_data.patient
@@ -57,12 +98,19 @@ getPatient().then((data) => {
 
 
 patchPatient().then((response) => {
-    console.log(response)
-    document.getElementById('post-action').textContent = 'Patched Patient'
-    document.getElementById('post-data-status').textContent= response.status
+    console.log(response.text())
+    document.getElementById('patch-action').textContent = 'Patched Patient'
+    document.getElementById('patch-data-status').textContent= 'Response: ' + response.status
 }).catch((err) => {
     debugger
     console.log('error patching patient')
 })
 
-
+patchPatient().then((response) => {
+    console.log(response.text())
+    document.getElementById('post-action').textContent = 'Created Patient'
+    document.getElementById('post-data-status').textContent= 'Response: ' + response.status
+}).catch((err) => {
+    debugger
+    console.log('error creating patient')
+})
