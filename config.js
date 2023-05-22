@@ -1,4 +1,4 @@
-export const clientId = '621c42d1-0af0-4ecf-b6a9-32b27e096848'
+export const clientId = '2abe6002-d761-4408-866b-bee7128a6007'
 export const redirectUri = 'https://ebbp123.github.io/mgw_sof_g/after-auth'
 export const indexUri = 'https://ebbp123.github.io/mgw_sof_g/index'
 
