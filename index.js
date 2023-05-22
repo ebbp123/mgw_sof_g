@@ -77,6 +77,7 @@ async function postPatient() {
         method: 'POST',
         headers: {
             'Accept': 'application/fhir+json',
+            'Content-Type': 'application/fhir+json',
             'Authorization': `Bearer ${token_data.access_token}`,
             "Cerner-Deployment-Config": 'ehr-sandbox'
         },
@@ -98,7 +99,7 @@ getPatient().then((data) => {
 
 patchPatient().then((response) => {
     console.log('Patient PATCH')
-    console.log(response.text())
+    console.log(response)
     document.getElementById('patch-action').textContent = 'Patched Patient'
     document.getElementById('patch-data-status').textContent= 'Response: ' + response.status
 }).catch((err) => {
@@ -107,7 +108,8 @@ patchPatient().then((response) => {
 
 postPatient().then((response) => {
     console.log('Patient POST')
-    console.log(response.text())
+    debugger
+    console.log(response)
     document.getElementById('post-action').textContent = 'Created Patient'
     document.getElementById('post-data-status').textContent= 'Response: ' + response.status
 }).catch((err) => {
