@@ -43,7 +43,7 @@ async function patchPatient() {
         body: patchTestAddress
     })
 
-    return await response.status()
+    return await response
 }
 
 getPatient().then((data) => {
@@ -56,10 +56,10 @@ getPatient().then((data) => {
 })
 
 
-patchPatient().then((data) => {
-    console.log(data)
+patchPatient().then((response) => {
+    console.log(response)
     document.getElementById('post-action').textContent = 'Patched Patient'
-    document.getElementById('post-data-status').textContent= data
+    document.getElementById('post-data-status').textContent= response.status
 }).catch((err) => {
     debugger
     console.log('error patching patient')
