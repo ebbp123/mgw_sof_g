@@ -21,6 +21,23 @@ async function getPatient() {
     return await response.json()
 }
 
+async function getmetadata() {
+
+  if (!token_data.access_token || !token_data.patient) {
+      console.log('no access token or patient found in cookie')
+      return
+  }
+
+  let response = await fetch(fhirUrl + '/metadata?_format=json', {
+      headers: {
+          'Accept': 'application/json',
+          "Cerner-Deployment-Config": 'ehr-sandbox'
+      }
+  })
+  return await response.json()
+}
+
+
 const patchTestAddress = `[
     {
       "path": "/address/0/id",
