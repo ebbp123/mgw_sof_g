@@ -88,30 +88,38 @@ async function postPatient() {
 }
 
 
-getPatient().then((data) => {
-    console.log(data)
-    document.getElementById('mgw-data-url').textContent = fhirUrl + '/Patient/' + token_data.patient
-    document.getElementById('mgw-data-content').textContent= JSON.stringify(data)
+// getPatient().then((data) => {
+//     console.log(data)
+//     document.getElementById('mgw-data-url').textContent = fhirUrl + '/Patient/' + token_data.patient
+//     document.getElementById('mgw-data-content').textContent= JSON.stringify(data)
+// }).catch((err) => {
+//     console.log('error fetching patient data')
+// })
+
+getmetadata().then((data) => {
+  console.log(data)
+  document.getElementById('mgw-data-url').textContent = fhirUrl + '/metadata?_format=json'
+  document.getElementById('mgw-data-content').textContent= JSON.stringify(data)
 }).catch((err) => {
-    console.log('error fetching patient data')
+  console.log('error fetching metadata')
 })
 
 
-patchPatient().then((response) => {
-    console.log('Patient PATCH')
-    console.log(response)
-    document.getElementById('patch-action').textContent = 'Patched Patient'
-    document.getElementById('patch-data-status').textContent= 'Response: ' + response.status
-}).catch((err) => {
-    console.log('error patching patient')
-})
+// patchPatient().then((response) => {
+//     console.log('Patient PATCH')
+//     console.log(response)
+//     document.getElementById('patch-action').textContent = 'Patched Patient'
+//     document.getElementById('patch-data-status').textContent= 'Response: ' + response.status
+// }).catch((err) => {
+//     console.log('error patching patient')
+// })
 
-postPatient().then((response) => {
-    console.log('Patient POST')
-    debugger
-    console.log(response)
-    document.getElementById('post-action').textContent = 'Created Patient'
-    document.getElementById('post-data-status').textContent= 'Response: ' + response.status
-}).catch((err) => {
-    console.log('error creating patient')
-})
+// postPatient().then((response) => {
+//     console.log('Patient POST')
+//     debugger
+//     console.log(response)
+//     document.getElementById('post-action').textContent = 'Created Patient'
+//     document.getElementById('post-data-status').textContent= 'Response: ' + response.status
+// }).catch((err) => {
+//     console.log('error creating patient')
+// })

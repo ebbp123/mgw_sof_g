@@ -5,7 +5,7 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString);
 
 // const fhirUrl = urlParams.get('iss')
-const fhirUrl = "https://ginezr5eefgea7vycgv6swcnm4.apigateway.us-ashburn-1.oci.customer-oci.com/dispatch/r4/dacc6494-e336-45ad-8729-b789ff8663c6"
+const fhirUrl = "https://mjidxkwlon7comjwid4ipgksr4.apigateway.us-ashburn-1.oci.customer-oci.com/dispatch/r4/dacc6494-e336-45ad-8729-b789ff8663c6"
 Cookie.set('fhir_url', fhirUrl, {secure: true, "max-age": 3600})
 
 const launchId = urlParams.get('launch')
