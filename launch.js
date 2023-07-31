@@ -27,7 +27,7 @@ function authorize(data) {
     let token_endpoint = data.token_endpoint;
     Cookie.set('token_endpoint', token_endpoint, {secure: true, "max-age": 3600})
 
-    debugger;
+    // debugger;
 
     let auth_location = `${authEndpoint}?` +
         "response_type=code&" +
@@ -44,7 +44,7 @@ function authorize(data) {
 getWellKnown().then((data) => {
     authorize(data)
 }).catch((err) => {
-    debugger
+    // debugger
     console.log('error fetching well-known')
 })
 

@@ -31,7 +31,7 @@ async function getAccessToken() {
 
 Cookie.rem('token_data')
 getAccessToken().then((data) => {
-    debugger
+    // debugger
     if (data.error) {
         console.log('error fetching token' + data.error_uri)
         return
@@ -41,6 +41,6 @@ getAccessToken().then((data) => {
     location.assign(indexUri)
 
 }).catch((err) => {
-    debugger
+    // debugger
     console.log('error fetching access token')
 })
